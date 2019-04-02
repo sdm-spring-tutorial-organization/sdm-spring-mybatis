@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+
+    <!-- ConsoleAppender -->
+    <!--<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">-->
+    <!--<layout class="ch.qos.logback.classic.PatternLayout">-->
+    <!--<Pattern>%d{HH:mm} %-5level %logger{36} - %msg %n</Pattern>-->
+    <!--</layout>-->
+    <!--</appender>-->
+
+    <!-- LogstashTcpSocketAppender -->
+    <appender name="stash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <!-- LOCAL -->
+        <destination>127.0.0.1:4560</destination>
+        <!-- TEST -->
+        <!-- TODO -->
+        <!-- LIVE -->
+        <!-- TODO -->
+
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
+    </appender>
+
+    <!--
+    TRACE (TRACE/DEBUG/INFO/WARN/ERROR) >
+    DEBUG (DEBUG/INFO/WARN/ERROR) >
+    INFO (INFO/WARN/ERROR)
+    WARN (WARN/ERROR) >
+    ERROR (ERROR)
+    -->
+
+    <!-- DEFAULT - TODO 기본내장로그를제외하는법을알아야함 -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/> <!-- CONSOLE : 대문자(필) -->
+        <appender-ref ref="stash"/>
+    </root>
+
+    <!--&lt;!&ndash; LOCAL &ndash;&gt;-->
+    <!--<springProfile name="local">-->
+    <!--<root level="DEBUG">-->
+    <!--<appender-ref ref="CONSOLE"/>-->
+    <!--&lt;!&ndash;<appender-ref ref="stash"/>&ndash;&gt;-->
+    <!--</root>-->
+    <!--</springProfile>-->
+
+    <!--&lt;!&ndash; TEST &ndash;&gt;-->
+    <!--<springProfile name="test">-->
+    <!--<root level="INFO">-->
+    <!--<appender-ref ref="CONSOLE"/>-->
+    <!--<appender-ref ref="stash"/>-->
+    <!--</root>-->
+    <!--</springProfile>-->
+
+    <!--&lt;!&ndash; LIVE &ndash;&gt;-->
+    <!--<springProfile name="live">-->
+    <!--<root level="WARN">-->
+    <!--<appender-ref ref="CONSOLE"/>-->
+    <!--<appender-ref ref="stash"/>-->
+    <!--</root>-->
+    <!--</springProfile>-->
+
+</configuration>

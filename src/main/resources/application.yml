@@ -1,0 +1,124 @@
+# [REF] https://jojoldu.tistory.com/269
+
+# aspect
+server:
+  port: 8282
+
+spring:
+  profiles:
+    active: local # default
+
+property:
+  hello: hello
+
+# local
+---
+
+spring:
+  profiles: local
+
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/sdm?useSSL=false
+    username: root
+    password: 1234
+
+  #  #DATASOURCE (DataSourceAutoConfiguration & DataSourceProperties)
+  #  spring.datasource.continue-on-error=false # Whether to stop if an error occurs while initializing the database.
+  #  spring.datasource.data= # Data (DML) script resource references.
+  #  spring.datasource.data-username= # Username of the database to execute DML scripts (if different).
+  #  spring.datasource.data-password= # Password of the database to execute DML scripts (if different).
+  #  spring.datasource.dbcp2.*= # Commons DBCP2 specific settings
+  #  spring.datasource.driver-class-name= # Fully qualified name of the JDBC driver. Auto-detected based on the URL by default.
+  #  spring.datasource.generate-unique-name=false # Whether to generate a random datasource name.
+  #  spring.datasource.hikari.*= # Hikari specific settings
+  #  spring.datasource.initialization-mode=embedded # Initialize the datasource with available DDL and DML scripts.
+  #  spring.datasource.jmx-enabled=false # Whether to enable JMX support (if provided by the underlying pool).
+  #  spring.datasource.jndi-name= # JNDI location of the datasource. Class, url, username & password are ignored when set.
+  #  spring.datasource.name= # Name of the datasource. Default to "testdb" when using an embedded database.
+  #  spring.datasource.password= # Login password of the database.
+  #  spring.datasource.platform=all # Platform to use in the DDL or DML scripts (such as schema-${platform}.sql or data-${platform}.sql).
+  #  spring.datasource.schema= # Schema (DDL) script resource references.
+  #  spring.datasource.schema-username= # Username of the database to execute DDL scripts (if different).
+  #  spring.datasource.schema-password= # Password of the database to execute DDL scripts (if different).
+  #  spring.datasource.separator=; # Statement separator in SQL initialization scripts.
+  #  spring.datasource.sql-script-encoding= # SQL scripts encoding.
+  #  spring.datasource.tomcat.*= # Tomcat datasource specific settings
+  #  spring.datasource.type= # Fully qualified name of the connection pool implementation to use. By default, it is auto-detected from the classpath.
+  #  spring.datasource.url= # JDBC URL of the database.
+  #  spring.datasource.username= # Login username of the database.
+  #  spring.datasource.xa.data-source-class-name= # XA datasource fully qualified name.
+  #  spring.datasource.xa.properties= # Properties to pass to the XA data source.
+
+  flyway:
+    enabled: true
+    encoding: UTF-8
+    # DataSource
+    # url : jdbc:mysql://localhost:3306
+    # user: root
+    # password: root
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+
+#  #FLYWAY (FlywayProperties)
+
+#  # FLYWAY - BASIC
+#  spring.flyway.enabled=true # 이동 경로를 사용할지 여부.
+#  spring.flyway.encoding=UTF-8 # SQL 마이그레이션의 인코딩.
+#  spring.flyway.url= # JDBC url of the database to migrate. If not set, the primary configured data source is used.
+#  spring.flyway.locations=classpath:db/migration
+#  spring.flyway.user= # Login user of the database to migrate.
+#  spring.flyway.password= # Login password of the database to migrate.
+
+#  # FLYWAY - OPTION
+#  spring.flyway.baseline-description=<< Flyway Baseline >> # Description to tag an existing schema with when applying a baseline.
+#  spring.flyway.baseline-on-migrate=false # Whether to automatically call baseline when migrating a non-empty schema.
+#  spring.flyway.baseline-version=1 # Version to tag an existing schema with when executing baseline.
+#  spring.flyway.check-location=true # Whether to check that migration scripts location exists.
+#  spring.flyway.clean-disabled=false # 데이터베이스 정리를 사용 불가능하게할지 여부.
+#  spring.flyway.clean-on-validation-error=false # Whether to automatically call clean when a validation error occurs.
+#  spring.flyway.connect-retries=0 # 유효성 검사 오류가 발생할 때 자동으로 정리를 호출할지 여부입니다.
+#  spring.flyway.group=false # Whether to group all pending migrations together in the same transaction when applying them.
+#  spring.flyway.ignore-future-migrations=true # 스키마 기록 테이블을 읽을 때 향후 마이그레이션을 무시할지 여부.
+#  spring.flyway.ignore-ignored-migrations=false # 스키마 기록 테이블을 읽을 때 무시 된 마이그레이션을 무시할지 여부.
+#  spring.flyway.ignore-missing-migrations=false # 스키마 기록 테이블을 읽을 때 누락 된 마이그레이션을 무시할지 여부.
+#  spring.flyway.ignore-pending-migrations=false # 스키마 기록 테이블을 읽을 때 보류중인 마이그레이션을 무시할지 여부.
+#  spring.flyway.init-sqls= # 연결을 얻은 직후에 이를 초기화하기 위해 실행할 SQL 문.
+#  spring.flyway.installed-by= # 스키마 이력 테이블에 마이그레이션을 적용한 것으로 기록 된 사용자 이름.
+#  spring.flyway.mixed=false # 같은 마이그레이션 내에서 트랜잭션 및 비 트랜잭션 문을 혼합 할 수 있는지 여부.
+#  spring.flyway.out-of-order=false # 마이그레이션이 순서없이 실행될 수 있는지 여부.
+#  spring.flyway.placeholder-replacement=true # Perform placeholder replacement in migration scripts.
+#  spring.flyway.placeholders= # Placeholders and their replacements to apply to sql migration scripts.
+#  spring.flyway.schemas= # Scheme names managed by Flyway (case-sensitive).
+#  spring.flyway.skip-default-callbacks=false # 기본 콜백을 건너 뛸지 여부입니다. true 인 경우 사용자 정의 콜백 만 사용됩니다.
+#  spring.flyway.skip-default-resolvers=false # 기본 확인자를 건너 뛸지 여부입니다. true 인 경우 사용자 지정 해결 프로그램 만 사용됩니다.
+#  spring.flyway.target= # Target version up to which migrations should be considered.
+
+#  # FLYWAY - SETTING
+#  spring.flyway.validate-on-migrate=true # Whether to automatically call validate when performing a migration.
+#  spring.flyway.sql-migration-prefix=V # File name prefix for SQL migrations.
+#  spring.flyway.repeatable-sql-migration-prefix=R # File name prefix for repeatable SQL migrations.
+#  spring.flyway.sql-migration-separator=__ # File name separator for SQL migrations.
+#  spring.flyway.sql-migration-suffixes=.sql # File name suffix for SQL migrations.
+#  spring.flyway.table=flyway_schema_history # Flyway에서 사용할 스키마 스키마 기록 테이블의 이름.
+#  spring.flyway.placeholder-suffix=} # Suffix of placeholders in migration scripts.
+#  spring.flyway.placeholder-prefix=${ # Prefix of placeholders in migration scripts.
+
+property:
+  hello: local_hello
+
+# stage
+---
+spring.profiles: stage
+spring.profiles.include: local
+
+property:
+  hello: stage_hello # 적용안됨 (local_hello)
+
+# live
+---
+spring.profiles: live
+spring.profiles.include: local
+
+property:
+  hello: live_hello # 적용안됨 (local_hello)

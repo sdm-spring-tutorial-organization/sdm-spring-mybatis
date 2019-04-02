@@ -1,0 +1,14 @@
+
+-- SCHEMA
+-- CREATE SCHEMA IF NOT EXISTS "PUBLIC";
+
+-- USER
+-- CREATE USER IF NOT EXISTS tester PASSWORD 'tester';
+-- ALTER USER tester ADMIN TRUE;
+-- GRANT ALL TO tester;
+
+CREATE TABLE member (
+  code INT(11) unsigned NOT NULL,
+  name VARCHAR(32) NOT NULL,
+  score INT(11) NULL
+);
