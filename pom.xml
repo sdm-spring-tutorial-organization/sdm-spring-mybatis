@@ -30,7 +30,7 @@
         <h2.version>1.4.193</h2.version>
         <mybatis.version>1.1.1</mybatis.version>
         <jdbc.version>2.1.0.RELEASE</jdbc.version>
-        <logback.verison>1.1.6</logback.verison>
+        <logback.verison>1.2.0</logback.verison>
         <logstash.version>4.6</logstash.version>
         <swagger.version>2.5.0</swagger.version>
         <flyway.version>5.2.1</flyway.version>
